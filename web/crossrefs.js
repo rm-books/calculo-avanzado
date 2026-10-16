@@ -8,7 +8,8 @@
 import { readFileSync } from "node:fs";
 
 const NUMBERED_ENVS = ["equation", "align", "alignat", "flalign", "gather", "multline"];
-const MATH_ENV = /<div class='mathjax-env mathjax-(\w+)'>([\s\S]*?)<\/div>/g;
+// tex4ht wraps display math in a <div> (older versions) or a <span> (newer ones)
+const MATH_ENV = /<(div|span) class='mathjax-env mathjax-(\w+)'>([\s\S]*?)<\/\1>/g;
 const LABEL = /\\label\s*\{([^}]*)\}/g;
 const TAG = /\\tag\s*(\*?)\s*\{([^}]*)\}/;
 
@@ -122,11 +123,11 @@ export function numberEquations(bodies, order, chapterOf) {
   for (const name of order) {
     const chap = chapterOf[name];
     if (chap === undefined || !(name in bodies)) continue;
-    bodies[name] = bodies[name].replace(MATH_ENV, (_, env, content) => {
+    bodies[name] = bodies[name].replace(MATH_ENV, (_, tag, env, content) => {
       let tex, lbls;
       [tex, lbls, count[chap]] = numberTex(unescapeHtml(content), chap, count[chap] ?? 0);
       Object.assign(labels, lbls);
-      return `<div class='mathjax-env mathjax-${env}'>${escapeHtml(tex, false)}</div>`;
+      return `<${tag} class='mathjax-env mathjax-${env}'>${escapeHtml(tex, false)}</${tag}>`;
     });
   }
   return labels;
@@ -166,7 +167,7 @@ const rowId = (l) => "mjx-eqn:" + l.replace(/\s/g, "_");
 /** {row id: environment content} for the labeled rows of a page. */
 function labeledRows(c) {
   const out = {};
-  for (const [, , content] of c.matchAll(MATH_ENV))
+  for (const [, , , content] of c.matchAll(MATH_ENV))
     for (const [, l] of unescapeHtml(content).matchAll(LABEL)) out[rowId(l)] = content;
   return out;
 }
@@ -232,12 +233,13 @@ function fragment(t, id, linkText) {
   // 1. equation: empty anchor right after the math block
   const anchorStart = t.lastIndexOf("<a ", pos);
   const before = t.slice(0, anchorStart).replace(/(?:\s|<p[^>]*>|<!--[\s\S]*?-->)*$/, ""); // sometimes the anchor is inside a <p>
-  if (before.endsWith("</div>")) {
-    const j = before.lastIndexOf("<div class='mathjax-env");
-    if (j >= 0 && closing(before, j) === before.length) {
+  const tag = before.match(/<\/(div|span)>$/)?.[1];
+  if (tag) {
+    const j = before.lastIndexOf(`<${tag} class='mathjax-env`);
+    if (j >= 0 && closing(before, j, tag) === before.length) {
       const env = new RegExp(MATH_ENV.source, "y");
       env.lastIndex = j;
-      return equationPreview(linkText, env.exec(before)[2]);
+      return equationPreview(linkText, env.exec(before)[3]);
     }
   }
   // 2. theorem-like environment
