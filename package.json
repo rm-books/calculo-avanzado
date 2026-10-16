@@ -1,0 +1,20 @@
+{
+  "name": "calculo-avanzado",
+  "private": true,
+  "type": "module",
+  "description": "Post-processing for the book website (tex4ht + build-time MathJax)",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "mathjax-full": "3.2.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "21.2.3",
+    "@commitlint/config-conventional": "21.2.3",
+    "husky": "9.1.7"
+  },
+  "scripts": {
+    "prepare": "husky"
+  }
+}

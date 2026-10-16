@@ -1,0 +1,40 @@
+\chapter{Límites y continuidad}
+
+\section{Límites de sucesiones}
+
+\begin{definition}\label{def:limit}
+Una sucesión $(a_n)$ converge a $L\in\mathbb{R}$ si para todo $\varepsilon>0$
+existe $N\in\mathbb{N}$ tal que $|a_n-L|<\varepsilon$ para todo $n\ge N$.
+\end{definition}
+
+\begin{theorem}[Unicidad del límite]\label{thm:uniqueness}
+Si $(a_n)$ converge, su límite es único.
+\end{theorem}
+\begin{proof}
+Si $L\neq L'$ fueran límites, tomando $\varepsilon=|L-L'|/2$ en la
+definición~\ref{def:limit} se llega a una contradicción.
+\end{proof}
+
+\begin{example}
+La sucesión $a_n = 1/n$ converge a $0$.
+\end{example}
+
+\section{Funciones continuas}
+
+\begin{lemma}\label{lem:comp}
+La composición de funciones continuas es continua.
+\end{lemma}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=7cm,height=5cm,xlabel={$x$},ylabel={$f(x)$},domain=-2:2,samples=60]
+\addplot[thick,rm-series-1]{x^2};
+\addplot[thick,dashed,rm-guide,domain=-1:2]{2*x-1};
+\addplot[only marks,mark=*,rm-highlight] coordinates {(1,1)};
+\end{axis}
+\end{tikzpicture}
+\caption{La función $f(x)=x^2$.}\label{fig:parabola}
+\end{figure}
+
+Véase la figura~\ref{fig:parabola} y el teorema~\ref{thm:uniqueness}; también \cite{rudin,cauchy}.

@@ -1,0 +1,9 @@
+build/
+site/
+*.aux *.log *.out *.toc *.bbl *.blg *.bcf *.run.xml *.synctex.gz *.fls *.fdb_latexmk
+*.4ct *.4tc *.dvi *.idv *.lg *.tmp *.xref *.css.bak
+public/
+.work-html/
+node_modules/
+sources/
+.DS_Store

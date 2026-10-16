@@ -1,0 +1,21 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.recipe.default": "latexmk",
+  "cSpell.language": "es,en",
+  "cSpell.enabledFileTypes": { "latex": true, "markdown": true },
+  "ltex.language": "es",
+  "latex-workshop.latex.recipes": [
+    { "name": "latexmk", "tools": ["latexmk"] },
+    { "name": "HTML (tex4ht)", "tools": ["build-site"] }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": ["-interaction=nonstopmode", "-file-line-error", "-synctex=1", "%DOC%"]
+    },
+    { "name": "build-site", "command": "./build.sh", "args": [] }
+  ]
+}

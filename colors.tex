@@ -1,0 +1,29 @@
+% Color palette. Every name has the "rm-" prefix.
+% Two layers: primitives (values) and semantics (meaning).
+% Figures use ONLY the semantic colors; primitives are tuned here.
+% Primitives are mid-lightness on purpose: the dark-mode HTML inverts figures
+% (filter: invert), and very dark or very light tones lose saturation when
+% inverted.
+
+% --- Primitives ---
+\definecolor{rm-blue-500}{HTML}{2563EB}
+\definecolor{rm-red-500}{HTML}{DC2626}
+\definecolor{rm-green-500}{HTML}{16A34A}
+\definecolor{rm-orange-500}{HTML}{EA580C}
+\definecolor{rm-purple-500}{HTML}{7C3AED}
+\definecolor{rm-gray-300}{HTML}{D1D5DB}
+\definecolor{rm-gray-500}{HTML}{6B7280}
+\definecolor{rm-gray-700}{HTML}{374151}
+
+% --- Semantic ---
+% Data series / curves, in order of use
+\colorlet{rm-series-1}{rm-blue-500}
+\colorlet{rm-series-2}{rm-red-500}
+\colorlet{rm-series-3}{rm-green-500}
+\colorlet{rm-series-4}{rm-orange-500}
+\colorlet{rm-series-5}{rm-purple-500}
+% Auxiliary elements
+\colorlet{rm-guide}{rm-gray-500}      % auxiliary lines, asymptotes, dashed lines
+\colorlet{rm-grid}{rm-gray-300}       % grids
+\colorlet{rm-muted}{rm-gray-700}      % secondary annotations
+\colorlet{rm-highlight}{rm-orange-500}% highlighted points or regions

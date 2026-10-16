@@ -1,0 +1,98 @@
+:root { --bg:#fff; --text:#212529; --muted:#6c757d; --border:#dee2e6; --link:#0d6efd;
+  --panel:#f8f9fa; --accent:#0d6efd; --header-bg:#fff; --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  --ui:var(--font); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#181a1b; --text:#dee2e6; --muted:#9aa0a6; --border:#343a40; --link:#6ea8fe; --panel:#212529; --accent:#6ea8fe; --header-bg:#181a1b; } }
+:root[data-theme="dark"] { --bg:#181a1b; --text:#dee2e6; --muted:#9aa0a6; --border:#343a40;
+  --link:#6ea8fe; --panel:#212529; --accent:#6ea8fe; --header-bg:#181a1b; }
+/* Palette: same structure as colors.tex (primitives -> semantic).
+   Dark mode uses the lighter 400 tones to keep contrast. */
+:root { --rm-blue-500:#2563eb; --rm-red-500:#dc2626; --rm-green-500:#16a34a; --rm-orange-500:#ea580c;
+  --rm-purple-500:#7c3aed; --rm-gray-500:#6b7280;
+  --rm-series-1:var(--rm-blue-500); --rm-series-2:var(--rm-red-500); --rm-series-3:var(--rm-green-500);
+  --rm-series-4:var(--rm-orange-500); --rm-series-5:var(--rm-purple-500); --rm-guide:var(--rm-gray-500);
+  /* theorem-like environment colors */
+  --thm-theorem:var(--rm-series-1); --thm-definition:var(--rm-series-3);
+  --thm-example:var(--rm-series-4); --thm-remark:var(--rm-guide); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --rm-blue-500:#60a5fa; --rm-red-500:#f87171; --rm-green-500:#4ade80; --rm-orange-500:#fb923c;
+  --rm-purple-500:#a78bfa; --rm-gray-500:#9ca3af; } }
+:root[data-theme="dark"] { --rm-blue-500:#60a5fa; --rm-red-500:#f87171; --rm-green-500:#4ade80;
+  --rm-orange-500:#fb923c; --rm-purple-500:#a78bfa; --rm-gray-500:#9ca3af; }
+* { box-sizing:border-box }
+html { scroll-padding-top:4rem }
+body { margin:0; background:var(--bg); color:var(--text); font:17px/1.65 var(--font) }
+a { color:var(--link); text-decoration:none } a:hover { text-decoration:underline }
+.site-header { position:sticky; top:0; z-index:10; display:flex; align-items:center; gap:1rem; height:3.2rem;
+  padding:0 1rem; background:var(--header-bg); border-bottom:1px solid var(--border); font-family:var(--ui) }
+.site-header .title { font-weight:600; color:var(--text) } .actions { margin-left:auto; display:flex; gap:.8rem; align-items:center }
+button { font:inherit; background:none; border:1px solid var(--border); color:var(--text); border-radius:.3rem; padding:.1rem .5rem; cursor:pointer }
+#menu { display:none }
+/* Collapsed index: full-height modal wa-drawer (Web Awesome). Its tokens are mapped to the site's. */
+wa-drawer { --size:min(20rem,86vw); --spacing:1rem;
+  --wa-color-surface-raised:var(--bg); --wa-color-text-normal:var(--text); --wa-color-surface-border:var(--border);
+  --wa-font-family-body:var(--font); font:.9rem/1.4 var(--ui) }
+wa-drawer:not(:defined) { display:none }
+wa-drawer .nav { font:.9rem/1.45 var(--ui) }
+wa-drawer .nav li a { padding:.45rem .6rem }
+.layout { display:grid; grid-template-columns:16rem minmax(0,46rem) 14rem; gap:2rem; justify-content:center; padding:0 1rem }
+.sidebar, .toc { position:sticky; top:3.2rem; align-self:start; max-height:calc(100vh - 3.2rem); overflow:auto;
+  font:.85rem/1.4 var(--ui); padding:1.2rem 0 }
+.nav ul, .toc ul { list-style:none; margin:0; padding:0 }
+.nav li a { display:block; padding:.25rem .5rem; color:var(--text); border-left:2px solid transparent }
+.nav li.chap a { font-weight:600; margin-top:.6rem } .nav li.sec a { padding-left:1.2rem; color:var(--muted) }
+.nav li.active a { color:var(--accent); border-left-color:var(--accent) } .num { opacity:.6; margin-right:.2rem }
+.toc h4 { margin:0 0 .5rem; font-size:.75rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted) }
+.toc li a { display:block; padding:.15rem 0; color:var(--muted) } .toc li.n4 { padding-left:.8rem } .toc li.n5 { padding-left:1.6rem }
+article { padding:1.5rem 0 } h2,h3,h4,h5 { line-height:1.25; font-family:var(--ui) } h3.sectionHead { font-size:1.8rem; border-bottom:1px solid var(--border); padding-bottom:.3rem }
+.titlemark { color:var(--muted); margin-right:.4rem }
+.newtheorem { margin:1.2rem 0; padding:.2rem 1rem; background:var(--panel); border-left:4px solid var(--thm-theorem); border-radius:.2rem }
+.thm-definition { border-left-color:var(--thm-definition) } .thm-example { border-left-color:var(--thm-example) }
+.thm-remark { border-left-color:var(--thm-remark) } .qed { float:right; margin-left:1rem; color:var(--muted) }
+.thm-proof { margin:.8rem 0; padding:0; background:none; border-left:0; border-radius:0 }
+.newtheorem .head, .newtheorem .head span { font-family:var(--ui); font-weight:700 }
+.pagination { display:flex; justify-content:space-between; gap:1rem; margin:2rem 0; padding-top:1rem; border-top:1px solid var(--border); font:.9rem var(--ui) }
+figure { text-align:center; margin:1.5rem 0 } figure img { max-width:100%; padding:.5rem; border-radius:.3rem }
+/* SVG figures in dark mode: invert lightness, keep hue */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) figure img { filter:invert(1) hue-rotate(180deg) } }
+:root[data-theme="dark"] figure img { filter:invert(1) hue-rotate(180deg) }
+figcaption { color:var(--muted); font-size:.9em }
+mjx-container { overflow-x:auto; overflow-y:hidden; max-width:100% }
+@media (max-width:1100px) { .layout { grid-template-columns:15rem minmax(0,1fr) } .toc { display:none } }
+@media (max-width:760px) { .layout { grid-template-columns:1fr } #menu { display:block }
+  .sidebar { display:none; position:fixed; inset:3.2rem 0 0 0; z-index:9; background:var(--bg); padding:1rem; max-height:none }
+  .sidebar.open { display:block } body { font-size:17px } }
+
+/* Cross-reference previews */
+#preview { position:fixed; z-index:20; width:max-content; max-width:min(32rem,92vw); max-height:min(60vh,26rem); overflow:auto;
+  padding:.2rem 1rem; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:.5rem;
+  box-shadow:0 8px 28px rgba(0,0,0,.28); font:.92rem/1.55 var(--font) }
+#preview[hidden] { display:none }
+#preview .newtheorem { margin:.7rem 0 }
+#preview figure { margin:.7rem 0 }
+#preview .pv-label, #preview .pv-section { margin-top:.6rem; font:600 .8rem var(--ui); color:var(--muted) }
+#preview .pv-cite { margin:.7rem 0 }
+
+/* tex4ht font classes (equivalent to its main.css, which isn't published) */
+[class*="ec-lmri"], [class*="ec-lmsl"] { font-style:italic }
+[class*="ec-lmbx"] { font-weight:700 }
+[class*="ec-lmbxi"] { font-style:italic }
+[class*="ec-lmtt"] { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.92em }
+.ec-lmr-8 { font-size:72% }
+/* the "Demostración:" heading stays upright */
+.thm-proof .head span { font-style:normal }
+
+/* Bibliography: [n] label on the left, entry beside it */
+dl.thebibliography { display:grid; grid-template-columns:max-content 1fr; column-gap:.9rem; row-gap:.7rem; margin:1rem 0 }
+dl.thebibliography dt { margin:0; font-weight:600; white-space:nowrap }
+dl.thebibliography dd { margin:0 }
+dl.thebibliography dd p { margin:0 }
+
+/* Cover: title and full table of contents */
+.cover-title { font-size:2.4rem; margin:.4rem 0 1.4rem }
+.nav-full { font-family:var(--ui) } .nav-full li a { font-size:1rem; padding:.3rem .5rem }
+.nav-full li.chap a { margin-top:.9rem }
+
+/* On the cover the full table of contents is the content: no sidebar or menu button */
+.cover .layout { grid-template-columns:minmax(0,46rem) }
+.cover #menu { display:none !important }

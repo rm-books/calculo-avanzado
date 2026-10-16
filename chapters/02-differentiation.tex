@@ -1,0 +1,40 @@
+\chapter{Diferenciación}
+
+\section{La derivada}
+
+\begin{definition}
+  $f'(a)=\displaystyle\lim_{h\to0}\frac{f(a+h)-f(a)}{h}$ si el límite existe.
+\end{definition}
+
+\begin{proposition}
+  Si $f$ es derivable en $a$, entonces es continua en $a$ (lema~\ref{lem:comp}).
+\end{proposition}
+
+\begin{remark}
+  \begin{align}
+    (fg)' &= f'g+fg', \label{eq:leibniz}\\
+    (f\circ g)' &= (f'\circ g)\,g'.
+  \end{align}
+  La ecuación~\eqref{eq:leibniz} es la regla de Leibniz.
+\end{remark}
+
+\section{Teorema del valor medio}
+
+\begin{theorem}[del valor medio]
+  Si $f$ es continua en $[a,b]$ y derivable en $(a,b)$, existe $c$ con
+  $f'(c)=\dfrac{f(b)-f(a)}{b-a}$.
+\end{theorem}
+
+\begin{corollary}
+  Si $f'=0$ en un intervalo, $f$ es constante.
+\end{corollary}
+\begin{proof}
+  Sean $x<y$ en el intervalo. Por el teorema del valor medio existe $c\in(x,y)$ con
+  \[
+    f(y)-f(x)=f'(c)\,(y-x)=0.
+  \]
+
+  Luego $f(x)=f(y)$ para todo par de puntos, es decir, $f$ es constante.
+\end{proof}
+
+\input{chapters/differentiability/inverse-function-theorem}

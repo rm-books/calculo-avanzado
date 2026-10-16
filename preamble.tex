@@ -1,0 +1,39 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{csquotes}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\input{colors}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+% Titles always in italics (articles default to quotation marks)
+\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat{journaltitle}{#1}
+
+% Theorems (ntheorem): numbered per chapter, shared counter
+\usepackage[thmmarks,amsmath]{ntheorem}
+\theoremstyle{plain}
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{corollary}[theorem]{Corolario}
+\theorembodyfont{\upshape}
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}{Ejemplo}[chapter]
+\newtheorem{remark}{Observación}[chapter]
+\theoremsymbol{\ensuremath{\blacksquare}}
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theoremseparator{:}
+\newtheorem{proof}{Demostración}
+
+% hyperref last
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+
+\input{macros}
